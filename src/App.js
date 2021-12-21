@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
+import swordLogo from './assets/sword.png';
 import './App.css';
 import SelectCharacter from './Components/SelectCharacter';
 import Arena from './Components/Arena';
 import { CONTRACT_ADDRESS , transformCharacterData} from './constants';
 import abi from './utils/NFTGame.json';
 import { ethers } from 'ethers';
+import LoadingIndicator from './Components/LoadingIndicator';
 
 // Constants
 const TWITTER_HANDLE = '_buildspace';
@@ -15,6 +17,7 @@ const App = () => {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [characterNFT, setCharacterNFT] = useState(null);
   const [walletConnect, setWalletConnect] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Checkin if wallet is connected or not
   const checkIfWalletIsConnected = async() => {
@@ -24,6 +27,7 @@ const App = () => {
       const { ethereum } = window;
       if (!ethereum) {
         console.log("Make sure you have metamask!");
+        setIsLoading(false);
         return;
       } else {
         console.log("We have the ethereum object", ethereum);
@@ -51,6 +55,7 @@ const App = () => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   }
 
   //Connects my wallet to this site
@@ -73,6 +78,11 @@ const App = () => {
 
   // Render Methods
   const renderContent = () => {
+    // If app is currently loading, just render laoding indicator
+    if (isLoading) {
+      return <LoadingIndicator />;
+    }
+
     // If wallet is connected
     if (!currentAccount) {
       const buttonText = walletConnect ? "Play" : "Connect Wallet To Play";
@@ -103,6 +113,7 @@ const App = () => {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     checkIfWalletIsConnected();
   }, []);
 
@@ -124,6 +135,8 @@ const App = () => {
       } else {
         console.log("No character NFT found!");
       }
+
+      setIsLoading(false);
     }
 
     // Run the above function only if we have a connected wallet
@@ -137,7 +150,11 @@ const App = () => {
     <div className="App">
       <div className="container">
         <div className="header-container">
-          <p className="header gradient-text">⚔️ Metaverse Sorcerers ⚔️</p>
+          <p className="header gradient-text">
+            <img className='sword-logo' src={swordLogo} alt="⚔️"/>
+              Metaverse Sorcerers
+            <img className='sword-logo' src={swordLogo} alt="⚔️"/>
+            </p>
           <p className="sub-text">Team up to protect the Metaverse from Cursed Spirits!</p>
           {renderContent()}
         </div>
