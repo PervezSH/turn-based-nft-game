@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 import SelectCharacter from './Components/SelectCharacter';
+import { CONTRACT_ADDRESS , transformCharacterData} from './constants';
+import abi from './utils/NFTGame.json';
+import { ethers } from 'ethers';
 
 // Constants
 const TWITTER_HANDLE = '_buildspace';
@@ -32,7 +35,7 @@ const App = () => {
       // String, hex code of the chainId of the Rinkebey test network
       const rinkebyChainId = "0x4"; 
       if (chainId !== rinkebyChainId) {
-        alert("You are not connected to the Rinkeby Test Network!");
+        alert("Please connect to the Rinkeby Test Network!");
       }
 
       // Checking if we're authorized to acess the user's wallet
@@ -97,6 +100,33 @@ const App = () => {
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
+  useEffect(() => {
+    const fetchNFTMetadata = async () => {
+      console.log("Checking for character NFT on address: ",currentAccount);
+
+      // "Provider" is Ethereum nodes, provided by MetaMask in the background
+      // Used to send/recieve data from our deployed contract
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      // "Signer" is an abstraction of an ethereum account
+      const signer = provider.getSigner();
+      const gameContract = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, signer);
+
+      const txn = await gameContract.checkIfPlayerHasNFT();
+      if (txn.name) {
+        console.log("%s has character NFT");
+        setCharacterNFT(transformCharacterData(txn));
+      } else {
+        console.log("No character NFT found!");
+      }
+    }
+
+    // Run the above function only if we have a connected wallet
+    if (currentAccount) {
+      console.log("Current Account : ",currentAccount);
+      fetchNFTMetadata();
+    }
+  }, [currentAccount]);
 
   return (
     <div className="App">
