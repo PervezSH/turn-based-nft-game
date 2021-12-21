@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 import SelectCharacter from './Components/SelectCharacter';
+import Arena from './Components/Arena';
 import { CONTRACT_ADDRESS , transformCharacterData} from './constants';
 import abi from './utils/NFTGame.json';
 import { ethers } from 'ethers';
@@ -95,6 +96,10 @@ const App = () => {
     else if (currentAccount && !characterNFT) {
       return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
     }
+    // If there is a connected wallet and characterNF
+    else if (currentAccount && characterNFT) {
+      return <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT}/>;
+    }
   }
 
   useEffect(() => {
@@ -114,7 +119,7 @@ const App = () => {
 
       const txn = await gameContract.checkIfPlayerHasNFT();
       if (txn.name) {
-        console.log("%s has character NFT");
+        console.log("%s has character NFT", currentAccount);
         setCharacterNFT(transformCharacterData(txn));
       } else {
         console.log("No character NFT found!");

@@ -100,6 +100,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
                 gameContract.off('CharacterNFTMinted', onCharacterMint);
             }
         };
+        // eslint-disable-next-line
     }, [gameContract]);
 
     return(
