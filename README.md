@@ -1,8 +1,13 @@
-# buildspace NFT Game Project
+# React App - Turn Based NFT Browser Game
 
-### **Welcome 👋**
-To get started with this course, clone this repo and follow these commands:
+Web app of mini turn-based 💎nft browser game deployed to rinkeby test network, requires minting your own character to 🎮play the agme.
 
-1. Run `npm install` at the root of your directory
-2. Run `npm run start` to start the project
-3. Start coding!
+Have a 👀look by clicking the 🔗link given below
+https://pervezsh.github.io/turn-based-nft-game/
+
+Connect your 🦊metamask wallet, mint a character, and protect the Metaverse from Cursed Spirits!🙃
+
+Solidity contract repo 🔗link:
+https://github.com/PervezSH/an-NFT-based-game
+
+buildspace Guided Project
