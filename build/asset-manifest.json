@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/turn-based-nft-game/static/css/main.d60db539.chunk.css",
+    "main.js": "/turn-based-nft-game/static/js/main.70658348.chunk.js",
+    "main.js.map": "/turn-based-nft-game/static/js/main.70658348.chunk.js.map",
+    "runtime-main.js": "/turn-based-nft-game/static/js/runtime-main.52fb92f4.js",
+    "runtime-main.js.map": "/turn-based-nft-game/static/js/runtime-main.52fb92f4.js.map",
+    "static/js/2.1f40391b.chunk.js": "/turn-based-nft-game/static/js/2.1f40391b.chunk.js",
+    "static/js/2.1f40391b.chunk.js.map": "/turn-based-nft-game/static/js/2.1f40391b.chunk.js.map",
+    "index.html": "/turn-based-nft-game/index.html",
+    "static/css/main.d60db539.chunk.css.map": "/turn-based-nft-game/static/css/main.d60db539.chunk.css.map",
+    "static/js/2.1f40391b.chunk.js.LICENSE.txt": "/turn-based-nft-game/static/js/2.1f40391b.chunk.js.LICENSE.txt",
+    "static/media/sword.ee84f372.png": "/turn-based-nft-game/static/media/sword.ee84f372.png",
+    "static/media/twitter-logo.ab177c79.svg": "/turn-based-nft-game/static/media/twitter-logo.ab177c79.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.52fb92f4.js",
+    "static/js/2.1f40391b.chunk.js",
+    "static/css/main.d60db539.chunk.css",
+    "static/js/main.70658348.chunk.js"
+  ]
+}
